@@ -33,6 +33,7 @@ addButton.addEventListener("click",function (e) {
         isEditElement.innerHTML =  document.querySelector("#todo-input").value
         todoInput.value = ""
         isEditMode = false
+        document.querySelectorAll("li h4").forEach(btn => btn.innerHTML = "")
     }
     
 })
@@ -44,10 +45,12 @@ function createTodoSchema(msg) {
     const button = document.createElement("button")
     const p = document.createElement("p")
     const h4 = document.createElement("h4")
-    h4.innerHTML = "cancel"
+    h4.innerHTML = ""
+    h4.style.cursor = "pointer"
     h4.addEventListener("click",function(e) {
         todoInput.value = ""
         isEditMode = false
+        e.target.innerHTML = ""
 
     })
     p.innerHTML = "Edit"
@@ -56,6 +59,7 @@ function createTodoSchema(msg) {
         isEditMode = true
         isEditElement = e.target.previousSibling
         todoInput.value = e.target.previousSibling.innerHTML
+        e.target.nextSibling.innerHTML = "Cancel"
         console.log(e.target.previousSibling.value);
     }
     button.innerHTML= "X"
